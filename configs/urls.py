@@ -21,6 +21,5 @@ urlpatterns = [
     path('auth', include('apps.auth.urls')),
     path('auto_parks', include('apps.auto_parks.urls')),
     path('cars_parks', include('apps.cars_to_auto_park.urls')),
-    path('cars', include('apps.cars.urls')),
     path('users', include('apps.users.urls')),
 ]

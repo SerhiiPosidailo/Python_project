@@ -1,27 +1,14 @@
-from django.http import Http404
+from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.generics import GenericAPIView, ListCreateAPIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-
-from core.permissions.is_admin_or_write_only_permission import IsAdminOrWriteOnlyPermission
-from core.permissions.is_premium import IsPremium
 
 from apps.auto_parks.models import AutoParkModel
 from apps.auto_parks.serializers import AutoParkSerializer
 from apps.cars_to_auto_park.serializers import CarSerializer
 
-
-class AutoParksListCreateView(ListCreateAPIView):
-    """
-        get:
-            Returns all list
-        post:
-            Creates a new Auto Park
-    """
-    queryset = AutoParkModel.objects.all()
-    serializer_class = AutoParkSerializer
-    permission_classes = (IsPremium, )
+UserModel = get_user_model()
 
 
 class AutoParkAddCarView(GenericAPIView):
@@ -40,8 +27,3 @@ class AutoParkAddCarView(GenericAPIView):
         auto_park = self.get_object()
         serializer = CarSerializer(auto_park.cars, many=True)
         return Response(serializer.data, status.HTTP_200_OK)
-
-
-
-
-

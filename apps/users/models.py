@@ -5,7 +5,6 @@ from django.db import models
 from core.enums.regex_enum import Regex
 from core.models import BaseModel
 
-from apps.cars.models import CarOneModel
 from apps.users.managers import UserManager
 
 

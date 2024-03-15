@@ -1,12 +1,15 @@
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.generics import GenericAPIView, ListCreateAPIView
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListCreateAPIView, get_object_or_404
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
+from core.permissions.is_premium import IsPremium
 from core.permissions.is_seperuser import IsSeperuser
 
+from apps.auto_parks.serializers import AutoParkSerializer
+from apps.cars.serializer import CarOneSerializer
 from apps.users.models import UserModel as User
 from apps.users.serializers import UserSerializer
 
@@ -16,6 +19,43 @@ UserModel = get_user_model()
 class UserCreateView(ListCreateAPIView):
     serializer_class = UserSerializer
 
+
+class UserAddAutoParkView(GenericAPIView):
+    queryset = UserModel.objects.all()
+    permission_classes = (IsPremium,)
+
+    def post(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        user = get_object_or_404(UserModel, id=pk)
+        data = self.request.data
+        serializer = AutoParkSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(auth_user=user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def get(self, *args, **kwargs):
+        user = self.get_object()
+        serializer = AutoParkSerializer(user.auto_park, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class UserCreateCarView(CreateAPIView):
+    queryset = UserModel.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        user = get_object_or_404(UserModel, id=pk)
+        data = self.request.data
+        serializer = CarOneSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(auth_user=user)
+        return Response(serializer.data, status.HTTP_201_CREATED)
+
+    def get(self, *args, **kwargs):
+        user = self.get_object()
+        serializer = CarOneSerializer(user.car, many=True)
+        return Response(serializer.data, status.HTTP_200_OK)
 
 
 class UserToAdminView(GenericAPIView):
@@ -101,6 +141,7 @@ class UserIsPremiumView(GenericAPIView):
 
         serializer = UserSerializer(user)
         return Response(serializer.data, status.HTTP_200_OK)
+
 
 class UserNotPremiumView(GenericAPIView):
     permission_classes = (IsAdminUser,)

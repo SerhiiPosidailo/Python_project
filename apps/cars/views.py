@@ -6,14 +6,15 @@ from core.permissions.is_admin_or_write_only_permission import IsAdminOrWriteOnl
 from apps.cars.models import CarOneModel
 from apps.cars.serializer import CarOneSerializer
 
-
-class CarsListCreateView(ListCreateAPIView):
-    queryset = CarOneModel.objects.all()
-    serializer_class = CarOneSerializer
-    permission_classes = (IsAuthenticated,)
-
-
-class CarsRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
-    queryset = CarOneModel.objects.all()
-    serializer_class = CarOneSerializer
-    permission_classes = (IsAuthenticated, )
+#
+#
+# class CarsListCreateView(ListCreateAPIView):
+#     queryset = CarOneModel.objects.all()
+#     serializer_class = CarOneSerializer
+#     permission_classes = (IsAuthenticated,)
+#
+#
+# class CarsRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+#     queryset = CarOneModel.objects.all()
+#     serializer_class = CarOneSerializer
+#     permission_classes = (IsAuthenticated, )
