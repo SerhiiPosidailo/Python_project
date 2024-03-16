@@ -1,11 +1,11 @@
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, GenericAPIView, ListCreateAPIView, get_object_or_404
+from rest_framework.generics import GenericAPIView, ListCreateAPIView, get_object_or_404
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
-from core.permissions.is_premium import IsPremium
+from core.permissions.is_auto_park import IsAutoPark
 from core.permissions.is_seperuser import IsSeperuser
 
 from apps.auto_parks.serializers import AutoParkSerializer
@@ -22,7 +22,7 @@ class UserCreateView(ListCreateAPIView):
 
 class UserAddAutoParkView(GenericAPIView):
     queryset = UserModel.objects.all()
-    permission_classes = (IsPremium,)
+    permission_classes = (IsAutoPark,)
 
     def post(self, *args, **kwargs):
         pk = self.kwargs.get('pk')
@@ -39,18 +39,23 @@ class UserAddAutoParkView(GenericAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class UserCreateCarView(CreateAPIView):
+class UserCreateCarView(GenericAPIView):
     queryset = UserModel.objects.all()
     permission_classes = (IsAuthenticated,)
 
-    def post(self, *args, **kwargs):
-        pk = self.kwargs.get('pk')
+    def post(self, request, pk):
         user = get_object_or_404(UserModel, id=pk)
+
+        if not user.is_premium and user.car_count >= 1:
+            return Response({"error": "Only premium users can create multiple cars"},
+                            status=status.HTTP_403_FORBIDDEN)
         data = self.request.data
         serializer = CarOneSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save(auth_user=user)
-        return Response(serializer.data, status.HTTP_201_CREATED)
+        user.car_count += 1
+        user.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def get(self, *args, **kwargs):
         user = self.get_object()

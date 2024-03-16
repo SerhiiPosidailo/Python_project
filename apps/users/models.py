@@ -17,6 +17,8 @@ class UserModel(AbstractBaseUser, PermissionsMixin, BaseModel):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_premium = models.BooleanField(default=False)
+    is_auto_park = models.BooleanField(default=False)
+    car_count = models.IntegerField(default=0)
 
     USERNAME_FIELD = 'email'
     objects = UserManager()
