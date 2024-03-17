@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from core.models import BaseModel
+from core.services.file_service import FileService
 
 UserModel = get_user_model()
 
@@ -16,5 +17,3 @@ class CarOneModel(BaseModel):
     year = models.IntegerField()
     price = models.IntegerField()
     auth_user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='car')
-
-
