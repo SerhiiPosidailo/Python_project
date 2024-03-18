@@ -7,7 +7,6 @@ from apps.cars_to_auto_park.managers import CarToAutoParkManager
 
 
 class CarModel(BaseModel):
-
     class Meta:
         db_table = 'cars_to_auto_park'
 

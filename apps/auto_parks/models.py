@@ -12,4 +12,3 @@ class AutoParkModel(BaseModel):
 
     name = models.CharField(max_length=20)
     auth_user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='auto_park')
-

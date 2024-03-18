@@ -1,10 +1,10 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-
-from core.permissions.is_admin_or_write_only_permission import IsAdminOrWriteOnlyPermission
-
-from apps.cars.models import CarOneModel
-from apps.cars.serializer import CarOneSerializer
+# from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+# from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+#
+# from core.permissions.is_admin_or_write_only_permission import IsAdminOrWriteOnlyPermission
+#
+# from apps.cars.models import CarOneModel
+# from apps.cars.serializer import CarOneSerializer
 
 #
 #

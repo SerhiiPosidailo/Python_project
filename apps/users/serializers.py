@@ -17,7 +17,6 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-
     auto_park = AutoParkSerializer(many=True, read_only=True)
     car = CarOneSerializer(many=True, read_only=True)
     profile = ProfileSerializer()
@@ -25,10 +24,11 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = (
-            'id', 'email', 'password', 'is_active', 'is_staff', 'is_superuser', 'is_premium', 'last_login', 'created_at',
+            'id', 'email', 'password', 'is_active', 'is_staff', 'is_superuser', 'is_premium', 'last_login',
+            'created_at',
             'updated_at', 'profile', 'auto_park', 'car'
         )
-        read_only_fields = ('id', 'is_active', 'is_staff', 'is_superuser','is_premium', 'last_login', 'created_at',
+        read_only_fields = ('id', 'is_active', 'is_staff', 'is_superuser', 'is_premium', 'last_login', 'created_at',
                             'updated_at')
         extra_kwargs = {
             'password': {

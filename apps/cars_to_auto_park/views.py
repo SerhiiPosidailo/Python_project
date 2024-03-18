@@ -9,5 +9,3 @@ class CarsRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
     permission_classes = (IsAdminUser,)
-
-
