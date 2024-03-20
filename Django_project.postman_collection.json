@@ -76,7 +76,19 @@
 					"name": "GetCarAutoPark",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/auto_parks/1/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auto_parks",
+								"1",
+								"cars"
+							]
+						}
 					},
 					"response": []
 				}
@@ -109,7 +121,19 @@
 					"name": "GetCars",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/users/1/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1",
+								"cars"
+							]
+						}
 					},
 					"response": []
 				}
@@ -119,10 +143,20 @@
 			"name": "Me",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "Me",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/auth",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth"
+							]
+						}
 					},
 					"response": []
 				}
