@@ -26,6 +26,126 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ToAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/users/1/to_admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1",
+								"to_admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ToUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/users/1/to_admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1",
+								"to_admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/users/1/block",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1",
+								"block"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UnBlock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/users/1/un_block",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1",
+								"un_block"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PremiumAkk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/users/1/premium",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1",
+								"premium"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NotPremium",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/users/1/not_premium",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"1",
+								"not_premium"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
