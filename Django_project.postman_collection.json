@@ -30,7 +30,7 @@
 				{
 					"name": "ToAdmin",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"url": {
 							"raw": "localhost:8000/users/1/to_admin",
@@ -50,7 +50,7 @@
 				{
 					"name": "ToUser",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"url": {
 							"raw": "localhost:8000/users/1/to_admin",
@@ -70,7 +70,7 @@
 				{
 					"name": "Block",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"url": {
 							"raw": "localhost:8000/users/1/block",
@@ -90,7 +90,7 @@
 				{
 					"name": "UnBlock",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"url": {
 							"raw": "localhost:8000/users/1/un_block",
@@ -110,17 +110,27 @@
 				{
 					"name": "PremiumAkk",
 					"request": {
-						"method": "POST",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEwOTQ3OTg3LCJpYXQiOjE3MTA5NDczODcsImp0aSI6IjEzZThhYTg4YTZkNjQzODg4MGRjMDczYTY1YTE4N2RhIiwidXNlcl9pZCI6MX0.UBrAfl3mktbzxZeATMTtRAnjLgS2AfIXijlJe5fzS9E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/users/1/premium",
+							"raw": "localhost:8000/users/2/premium",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"users",
-								"1",
+								"2",
 								"premium"
 							]
 						}
@@ -130,7 +140,7 @@
 				{
 					"name": "NotPremium",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"url": {
 							"raw": "localhost:8000/users/1/not_premium",
